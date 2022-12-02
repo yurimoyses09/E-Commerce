@@ -1,4 +1,6 @@
 using E_Commerce_CasaDoCodigo.Context;
+using E_Commerce_CasaDoCodigo.Services;
+using E_Commerce_CasaDoCodigo.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,10 +31,11 @@ namespace E_Commerce_CasaDoCodigo
             services.AddMvc();
 
             services.AddDbContext<ApplicationContext>(o => o.UseSqlServer(Configuration.GetConnectionString("Default")));
+            services.AddTransient<IDataService, DataService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -57,6 +60,9 @@ namespace E_Commerce_CasaDoCodigo
                     name: "default",
                     pattern: "{controller=Pedido}/{action=Carrossel}/{id?}");
             });
+
+            // Garante que database sera criado ao executar a aplicacao
+            serviceProvider.GetService<IDataService>().InicializaDb();
         }
     }
 }
