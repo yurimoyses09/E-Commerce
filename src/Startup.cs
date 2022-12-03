@@ -1,19 +1,19 @@
 using E_Commerce_CasaDoCodigo.Context;
+using E_Commerce_CasaDoCodigo.Repositories.Cadastro;
+using E_Commerce_CasaDoCodigo.Repositories.ItemPedido;
+using E_Commerce_CasaDoCodigo.Repositories.Pedido;
+using E_Commerce_CasaDoCodigo.Repositories.Pedido.Interface;
 using E_Commerce_CasaDoCodigo.Repositories.Produto;
 using E_Commerce_CasaDoCodigo.Repositories.Produto.Interface;
 using E_Commerce_CasaDoCodigo.Services;
 using E_Commerce_CasaDoCodigo.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace E_Commerce_CasaDoCodigo
 {
@@ -30,11 +30,18 @@ namespace E_Commerce_CasaDoCodigo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDistributedMemoryCache();
+            services.AddSession();
             services.AddMvc();
 
             services.AddDbContext<ApplicationContext>(o => o.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddTransient<IDataService, DataService>();
+
             services.AddTransient<IProdutoRepository, ProdutoRepository>();
+            services.AddTransient<ICadastroRepository, CadastroRepository>();
+            services.AddTransient<IItemPedidoRepository, ItemPedidoRepository>();
+            services.AddTransient<IPedidoRepository, PedidoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +60,8 @@ namespace E_Commerce_CasaDoCodigo
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseSession();
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -61,7 +70,7 @@ namespace E_Commerce_CasaDoCodigo
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Pedido}/{action=Carrossel}/{id?}");
+                    pattern: "{controller=Pedido}/{action=Carrossel}/{codigo?}");
             });
 
             // Garante que database sera criado ao executar a aplicacao

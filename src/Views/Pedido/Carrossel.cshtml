@@ -1,45 +1,44 @@
-﻿@using X.PagedList.Mvc.Core;
-@model X.PagedList.PagedList<Produto>;
+﻿@model List<Produto>;
+
+@{
+    ViewData["Title"] = "Carrosel";
+}
 
 <h3>Catálogo</h3>
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="~/css/site.css"/>
-    </head>
-    <body>
-        <div>
-            <div class="row">
-                @{
-                    var produtosPagina = Model;
-                }
-                @foreach (var item in produtosPagina)
-                {
-                    string codigo = item.Codigo.ToString() + ".jpg";
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/site.css" />
+</head>
+<body>
+    <div>
+        <div class="row">
+            @{
+                var produtosPagina = Model;
+            }
+            @foreach (var item in produtosPagina)
+            {
+                string codigo = item.Codigo.ToString() + ".jpg";
 
-                    <div class="col-md-3 col-sm-3 col-lg-3">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <img class="img-produto-carrossel" src="/images/produtos/large_@codigo" />
-                            </div>
-                            <div class="panel-footer produto-footer">
-                                <div class="produto-nome">@Html.DisplayFor(modelitem => item.Nome)</div>
-                                <div><h4><strong>R$ @Html.DisplayFor(modelitem => item.Preco)</strong></h4></div>
-                                <div class="text-center">
-                                    <a href="/" class="btn btn-success">Adicionar</a>
-                                </div>
+                <div class="col-md-3 col-sm-3 col-lg-3">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <img class="img-produto-carrossel" src="/images/produtos/large_@codigo" />
+                        </div>
+                        <div class="panel-footer produto-footer">
+                            <div class="produto-nome">@Html.DisplayFor(modelitem => item.Nome)</div>
+                            <div><h4><strong>R$ @Html.DisplayFor(modelitem => item.Preco)</strong></h4></div>
+                            <div class="text-center">
+                                <a asp-action="carrinho" asp-route-codigo="@item.Codigo" class="btn btn-success">Adicionar</a>
                             </div>
                         </div>
                     </div>
-                }
-            </div>
-
-            <div class="pagination-lg">
-                @Html.PagedListPager(Model, pagina => Url.Action("", new { pagina }))
-            </div>
+                </div>
+            }
         </div>
-    </body>
+    </div>
+</body>
 </html>
 
 
