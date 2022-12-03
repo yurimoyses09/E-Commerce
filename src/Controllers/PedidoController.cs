@@ -16,9 +16,9 @@ namespace E_Commerce_CasaDoCodigo.Controllers
             _produtoRepository = produtoRepository;
         }
 
-        public IActionResult Carrossel(int pagina = 1)
+        public IActionResult Carrossel()
         {
-            var produtos = _produtoRepository.GetProdutos().ToPagedList(pagina, 24);
+            var produtos = _produtoRepository.GetProdutos();
 
             return View(produtos);
         }
