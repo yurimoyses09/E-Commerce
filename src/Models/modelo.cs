@@ -1,8 +1,8 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
-namespace CasaDoCodigo.Models
+namespace E_Commerce_CasaDoCodigo.Models
 {
     [DataContract]
     public class BaseModel
@@ -61,7 +61,7 @@ namespace CasaDoCodigo.Models
     }
 
     public class ItemPedido : BaseModel
-    {   
+    {
         [Required]
         public Pedido Pedido { get; private set; }
         [Required]
