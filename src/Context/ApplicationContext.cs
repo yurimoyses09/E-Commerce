@@ -1,4 +1,4 @@
-﻿using CasaDoCodigo.Models;
+﻿using E_Commerce_CasaDoCodigo.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace E_Commerce_CasaDoCodigo.Context

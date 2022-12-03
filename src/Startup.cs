@@ -1,4 +1,6 @@
 using E_Commerce_CasaDoCodigo.Context;
+using E_Commerce_CasaDoCodigo.Repositories.Produto;
+using E_Commerce_CasaDoCodigo.Repositories.Produto.Interface;
 using E_Commerce_CasaDoCodigo.Services;
 using E_Commerce_CasaDoCodigo.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -32,6 +34,7 @@ namespace E_Commerce_CasaDoCodigo
 
             services.AddDbContext<ApplicationContext>(o => o.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddTransient<IDataService, DataService>();
+            services.AddTransient<IProdutoRepository, ProdutoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
