@@ -6,5 +6,6 @@ namespace E_Commerce_CasaDoCodigo.Repositories.Produto.Interface
     public interface IProdutoRepository
     {
         void SaveProdutos(List<Livro> livros);
+        IList<Models.Produto> GetProdutos();
     }
 }
