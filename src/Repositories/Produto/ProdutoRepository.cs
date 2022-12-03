@@ -16,16 +16,16 @@ namespace E_Commerce_CasaDoCodigo.Repositories.Produto
 
         public IList<Models.Produto> GetProdutos()
         {
-            return _DbSetprodutos.ToList();
+            return _DbSet.ToList();
         }
 
         public void SaveProdutos(List<Livro> livros)
         {
             foreach (var item in livros)
             {
-                if (!_DbSetprodutos.Where(x => x.Codigo == item.Codigo).Any())
+                if (!_DbSet.Where(x => x.Codigo == item.Codigo).Any())
                 {
-                    _DbSetprodutos.Add(new Models.Produto(item.Codigo, item.Nome, item.Preco));
+                    _DbSet.Add(new Models.Produto(item.Codigo, item.Nome, item.Preco));
                 }
             }
 
