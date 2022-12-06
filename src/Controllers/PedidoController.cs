@@ -2,87 +2,58 @@
 using E_Commerce_CasaDoCodigo.Repositories.Pedido.Interface;
 using E_Commerce_CasaDoCodigo.Repositories.Produto.Interface;
 using Microsoft.AspNetCore.Mvc;
-using System;
+using Microsoft.Extensions.Logging;
 
 namespace E_Commerce_CasaDoCodigo.Controllers
 {
     public class PedidoController : Controller
     {
+        private readonly ILogger<PedidoController> _logger;
         private readonly IProdutoRepository _produtoRepository;
         private readonly IPedidoRepository _pedidoRepository;
 
-        public PedidoController(IProdutoRepository produtoRepository, IPedidoRepository pedidoRepository)
+        public PedidoController(ILogger<PedidoController> logger, IProdutoRepository produtoRepository, IPedidoRepository pedidoRepository)
         {
+            _logger = logger;
             _produtoRepository = produtoRepository;
             _pedidoRepository = pedidoRepository;
         }
 
         public IActionResult Carrossel()
         {
-            try
-            {
-                var produtos = _produtoRepository.GetProdutos();
+            var produtos = _produtoRepository.GetProdutos();
 
-                return View(produtos);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return View(produtos);
         }
 
         public IActionResult Cadastro()
         {
-            try
-            {
-                return View();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
+            return View();
         }
 
         public IActionResult Carrinho(string codigo)
         {
-            try
+            if (!string.IsNullOrEmpty(codigo))
             {
-                if (!string.IsNullOrEmpty(codigo))
-                {
-                    _pedidoRepository.AddItem(codigo);
-                }
-
-                Pedido pedido = _pedidoRepository.GetPedido();
-
-                return View(pedido.Itens);
-            }
-            catch (Exception)
-            {
-                throw;
+                _pedidoRepository.AddItem(codigo);
             }
 
+            Models.Pedido pedido = _pedidoRepository.GetPedido();
+
+            return View(pedido.Itens);
         }
-
+        
         public IActionResult Resumo()
         {
-            try
-            {
-                var pedido = _pedidoRepository.GetPedido();
+            var pedido = _pedidoRepository.GetPedido();
 
-                return View(pedido);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
+            return View(pedido);
         }
 
         [HttpPost]
-        public void UpdateQuantidade([FromBody] ItemPedido itemPedido)
+        public IActionResult UpdateQuantidade([FromBody] ItemPedido itemPedido)
         {
-            throw new NotImplementedException();
+            return Ok(itemPedido);
         }
     }
 }
