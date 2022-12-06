@@ -1,8 +1,8 @@
-﻿using E_Commerce_CasaDoCodigo.Repositories.Pedido.Interface;
+﻿using E_Commerce_CasaDoCodigo.Models;
+using E_Commerce_CasaDoCodigo.Repositories.Pedido.Interface;
 using E_Commerce_CasaDoCodigo.Repositories.Produto.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using X.PagedList;
 
 namespace E_Commerce_CasaDoCodigo.Controllers
 {
@@ -48,6 +48,12 @@ namespace E_Commerce_CasaDoCodigo.Controllers
             var pedido = _pedidoRepository.GetPedido();
 
             return View(pedido);
+        }
+
+        [HttpPost]
+        public void UpdateQuantidade([FromBody] ItemPedido itemPedido)
+        {
+            
         }
     }
 }
