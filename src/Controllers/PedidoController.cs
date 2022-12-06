@@ -42,7 +42,7 @@ namespace E_Commerce_CasaDoCodigo.Controllers
 
             return View(pedido.Itens);
         }
-
+        
         public IActionResult Resumo()
         {
             var pedido = _pedidoRepository.GetPedido();
