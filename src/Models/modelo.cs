@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
@@ -87,6 +88,11 @@ namespace E_Commerce_CasaDoCodigo.Models
             Produto = produto;
             Quantidade = quantidade;
             PrecoUnitario = precoUnitario;
+        }
+
+        internal void AtualizaQuantidade(int quantidade)
+        {
+            this.Quantidade = quantidade;
         }
     }
 

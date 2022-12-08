@@ -1,6 +1,7 @@
 ﻿namespace E_Commerce_CasaDoCodigo.Repositories.ItemPedido
 {
-    interface IItemPedidoRepository
+    public interface IItemPedidoRepository
     {
+        void UpdatePedido(Models.ItemPedido itemPedido);
     }
 }
