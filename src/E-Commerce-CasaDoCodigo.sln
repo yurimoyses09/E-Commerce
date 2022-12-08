@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.32602.291
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E-Commerce-CasaDoCodigo", "E-Commerce-CasaDoCodigo.csproj", "{946F8C1A-607C-46FE-AD21-D6A1EE3E85F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Commerce-CasaDoCodigo.Tests", "..\E-Commerce-CasaDoCodigo.Tests\E-Commerce-CasaDoCodigo.Tests.csproj", "{AA2A5768-B53F-4F8F-8B39-07D64ED09BB6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{946F8C1A-607C-46FE-AD21-D6A1EE3E85F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{946F8C1A-607C-46FE-AD21-D6A1EE3E85F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{946F8C1A-607C-46FE-AD21-D6A1EE3E85F2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AA2A5768-B53F-4F8F-8B39-07D64ED09BB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AA2A5768-B53F-4F8F-8B39-07D64ED09BB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AA2A5768-B53F-4F8F-8B39-07D64ED09BB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AA2A5768-B53F-4F8F-8B39-07D64ED09BB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
