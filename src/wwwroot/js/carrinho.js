@@ -18,9 +18,9 @@ class Carrinho {
     }
 
     getData(elemento) {
-        var linhadoItem = $(elemento).parents('[item-id]');
-        var itemId = $(linhadoItem).attr('item-id');
-        var novaQtde = $(linhadoItem).find('input').val();
+        let linhadoItem = $(elemento).parents('[item-id]');
+        let itemId = $(linhadoItem).attr('item-id');
+        let novaQtde = $(linhadoItem).find('input').val();
 
         return {
             Id: itemId,
@@ -41,4 +41,4 @@ class Carrinho {
 
 }
 
-var carrinho = new Carrinho();
+let carrinho = new Carrinho();
