@@ -39,15 +39,15 @@
                     <div class="col-md-2 text-center">@item.PrecoUnitario</div>
                     <div class="col-md-2 text-center">
                         <div class="input-group">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default">
+                            <span class="input-group-btn" onblur="carrinho.updateQuantidade(this)">
+                                <button class="btn btn-default" onclick="carrinho.clickDecremento(this)">
                                     <span class="glyphicon-minus"></span>
                                 </button>
                             </span>
                             <input type="text" value="@(item.Quantidade)"
                                    class="form-control text-center" />
                             <span class="input-group-btn">
-                                <button class="btn btn-default" onclick="clickIncremento(this)">
+                                <button class="btn btn-default" onclick="carrinho.clickIncremento(this)">
                                     <span class="glyphicon-plus"></span>
                                 </button>
                             </span>
@@ -96,28 +96,7 @@
 
 @section Scripts
 {
-    <script type="text/javascript">
-        function clickIncremento(btn) {
-
-            var linhadoItem = $(btn).parents('[item-id]');
-            var itemId = $(linhadoItem).attr('item-id');
-            var novaQtde = $(linhadoItem).find('input').val();
-
-            var data = {
-                Id: itemId,
-                Quantidade: novaQtde
-            };
-
-            $.ajax({
-                url: '/Pedido/UpdateQuantidade',
-                type: 'POST',
-                contentType: 'application/json',
-                dataType: "json",
-                data: JSON.stringify(data)
-            });
-
-            debugger;
-        }
+    <script src="~/js/carrinho.js">
 
     </script>
 }
